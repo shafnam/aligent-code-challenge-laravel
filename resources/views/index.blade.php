@@ -3,7 +3,7 @@
 
 	<h2>Simple Time and Date Calculator with Timezone Conversion</h2>
 	
-	<form class="mt-5" method="POST" action="">
+	<form class="mt-5" method="POST" action="{{ route('calculate') }}">
         {{ csrf_field() }}  
 
         <div class="row">
@@ -20,6 +20,17 @@
                 </div>                    
             </div>
         </div>
+
+        <?php if(isset($start_date) && isset($end_date)) { ?>
+
+        <div class="title mt-3">
+            <p>
+                From (Not included): <b>{{ $start_date }}</b> 
+                - To (Included): <b>{{ $end_date }}</b>
+            </p>
+        </div>
+
+        <?php } ?>
 
         <div class="row">
             <div class="col-md-12 mt-3">

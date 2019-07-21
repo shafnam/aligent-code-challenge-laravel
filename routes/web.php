@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'DateCalculatorController@index')->name('index');
+Route::post('/', 'DateCalculatorController@calculate')->name('calculate');
