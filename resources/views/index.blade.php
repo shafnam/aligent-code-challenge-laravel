@@ -35,6 +35,10 @@
                 <tr>
                     <td>Number of days:</td>
                     <td> {{ $number_of_days }}</td> 
+                </tr> 
+                <tr>
+                    <td>Number of weekdays:</td>
+                    <td>{{ $number_of_week_days }}</td>
                 </tr>                                                          
             </table>                     
         </div>
