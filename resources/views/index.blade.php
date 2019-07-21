@@ -30,6 +30,15 @@
             </p>
         </div>
 
+        <div class="title mt-0">
+            <table>
+                <tr>
+                    <td>Number of days:</td>
+                    <td> {{ $number_of_days }}</td> 
+                </tr>                                                          
+            </table>                     
+        </div>
+
         <?php } ?>
 
         <div class="row">

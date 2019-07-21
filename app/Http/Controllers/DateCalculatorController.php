@@ -17,6 +17,8 @@ class DateCalculatorController extends Controller
         $start = strtotime($start_date);
         $end_date = $request->input('end');
         $end = strtotime($end_date);
+        // Get number of days using helper function
+        $number_of_days = calculateNumberOfDays($start, $end);
 
         $data = array(
             'start_date'=>$start_date,
