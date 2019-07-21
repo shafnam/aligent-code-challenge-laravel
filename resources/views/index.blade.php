@@ -25,8 +25,8 @@
 
         <div class="title mt-3">
             <p>
-                From (Not included): <b>{{ $start_date }}</b> 
-                - To (Included): <b>{{ $end_date }}</b>
+                From  : <b>{{ $start_date }}</b> 
+                - To  : <b>{{ $end_date }}</b>
             </p>
         </div>
 

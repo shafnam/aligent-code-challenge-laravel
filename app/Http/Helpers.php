@@ -34,11 +34,7 @@
             $start = $end;
             $end = $stime;
         } 
-        //else {
-        //     // dont consider the start day for the calculation
-        //     $start += 86400; 
-        // }        
-
+        
         while($start <= $end){
 
             $no_days++; // no of days in the given date range   
@@ -49,7 +45,7 @@
             $start += 86400; // +1 day                    
         }
         
-        $number_of_week_days = ($no_days -1) - $weekends;
+        $number_of_week_days = $no_days - $weekends;
 
         return $number_of_week_days;
     }
