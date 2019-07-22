@@ -10,8 +10,8 @@ class NumberOfWeekDaysTest extends TestCase
 {
     /**
      * A basic unit test example.
-     * It tests whether the number of days 
-     * between 9th and 19th is equal to 10 days
+     * It tests whether the number of week days 
+     * between 9th and 19th is equal to 8 days
      * @return void
      * @test 
      */
@@ -22,7 +22,7 @@ class NumberOfWeekDaysTest extends TestCase
         $start = strtotime($start_date);
         $end = strtotime($end_date);
         
-        $expected = 10;        
+        $expected = 8;        
         $actual = calculateNumberOfWeekDays($start, $end);
 
         $this->assertEquals($expected, $actual);
