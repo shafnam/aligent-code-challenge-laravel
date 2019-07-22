@@ -34,9 +34,10 @@
             $start = $end;
             $end = $stime;
         } 
-        
-        while($start <= $end){
 
+        $start += 86400; // dont consider the start day
+
+        while($start <= $end){
             $no_days++; // no of days in the given date range   
             $what_day = date('N',$start); // N - The ISO-8601 numeric representation of a day (1 for Monday, 7 for Sunday)            
             if($what_day > 5) { // 6 and 7 are weekend days
@@ -46,6 +47,10 @@
         }
         
         $number_of_week_days = $no_days - $weekends;
+
+        if($number_of_week_days < 1){ // do not return negative value instead return 0
+            $number_of_week_days = 0;
+        }
 
         return $number_of_week_days;
     }
