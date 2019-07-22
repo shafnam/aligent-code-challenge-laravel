@@ -27,6 +27,7 @@
                     </option>
                     @endforeach
                 </select>
+                {!! $errors->first('s_tzone', '<span class="error">:message</span>') !!}
             </div>
             <div class="col-md-6">
                 <select class="form-control selectpicker" name="e_tzone">
@@ -37,20 +38,23 @@
                     </option>
                     @endforeach
                 </select>
+                {!! $errors->first('e_tzone', '<span class="error">:message</span>') !!}
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('start') ? 'has-error' : ''}}">
                     <label class="label-control">Select start date</label>
                     <input type="text" class="form-control datetimepicker_start" name="start" @if(isset($start_date)) value="{{ $start_date }}" @else value="{{old('start')}}" @endif>
+                    {!! $errors->first('start', '<span class="error">:message</span>') !!}
                 </div>                    
             </div>                    
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('end') ? 'has-error' : ''}}">
                     <label class="label-control">Select end date</label>
                     <input type="text" class="form-control datetimepicker_end" name="end" @if(isset($end_date)) value="{{ $end_date }}" @else value="{{old('end')}}" @endif>
+                    {!! $errors->first('end', '<span class="error">:message</span>') !!}
                 </div>                    
             </div>
         </div>

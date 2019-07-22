@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+
+
 class DateCalculatorController extends Controller
 {
     public function index()
@@ -19,10 +22,29 @@ class DateCalculatorController extends Controller
 
     public function calculate(Request $request)
     {
-        if ($request->has('timezone')){
+        // Validations
+        $validate_these = [
+            'start' => 'required',
+            'end' => 'required'
+        ];
+
+        //dd($request->input('timezone'));
+
+        if( $request->has('timezone') )
+        {
             $timezone = 1;
-        } else {
+            $validate_these['s_tzone'] = 'required';
+            $validate_these['e_tzone'] = 'required';
+        } 
+        else {
             $timezone = 0;
+        } 
+        
+
+        $validator = Validator::make($request->all(),$validate_these);
+
+        if ($validator->fails()) {
+            return redirect('/')->withErrors($validator)->withInput();
         }
 
         /** If timezone specified set the default timezone to start date timezone 
@@ -90,7 +112,6 @@ class DateCalculatorController extends Controller
             's_tzone' =>  $s_tzone,
             'e_tzone' =>  $e_tzone
             );
-
         return view('index')->with($data);
     }
 }
