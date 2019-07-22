@@ -6,6 +6,40 @@
 	<form class="mt-5" method="POST" action="{{ route('calculate') }}">
         {{ csrf_field() }}  
 
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="form-check">
+                    <label class="form-check-label timezonev">
+                        <input id="allow_timezone" class="form-check-input" type="checkbox" name="timezone" value="timezone" <?php if( $timezone == 1 ){ echo "checked"; }?>>
+                        Calculate across different timezones
+                    </label>
+                </div>
+            </div>
+        </div>    
+
+        <div class="row mb-5" id="timezone" style="display: none;">
+            <div class="col-md-6">
+                <select class="form-control selectpicker" name="s_tzone">
+                    <option value="">Please, select timezone for start date</option>
+                    @foreach( $tz_list as $t)
+                    <option value="{{ $t['zone'] }}" <?php if( isset($s_tzone) && $s_tzone == $t['zone']){ echo "selected"; }?>>
+                        {{ $t['diff_from_GMT'] }}  -  {{ $t['zone'] }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control selectpicker" name="e_tzone">
+                    <option value="">Please, select timezone for end date</option>
+                    @foreach( $tz_list as $t)
+                    <option value="{{ $t['zone'] }}" <?php if( isset($e_tzone) && $e_tzone == $t['zone']){ echo "selected"; }?>>
+                        {{ $t['diff_from_GMT'] }}  -  {{ $t['zone'] }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">

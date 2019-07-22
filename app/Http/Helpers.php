@@ -3,7 +3,7 @@
      * Find the complete number of days between two datetime parameters
      * @param $start
      * @param $end
-     * @return integer
+     * @return integer or array
      */
     function calculateNumberOfDays($start,$end,$convert_to=null){
         $datediff = ($start - $end);
@@ -85,6 +85,23 @@
         $datediff = calculateNumberOfDays($start,$end,$convert_to=null);        
         $number_of_weeks = floor($datediff / 7);
         return $number_of_weeks;
+    }
+
+    /**
+     * Timezones list with GMT offset
+     *
+     * @return array
+     * @link http://stackoverflow.com/a/9328760
+     */
+    function tz_list() {
+        $zones_array = array();
+        $timestamp = time();
+        foreach(timezone_identifiers_list() as $key => $zone) {
+            date_default_timezone_set($zone);
+            $zones_array[$key]['zone'] = $zone;
+            $zones_array[$key]['diff_from_GMT'] = 'UTC/GMT ' . date('P', $timestamp);
+        }
+        return $zones_array;
     }
 
 ?>
