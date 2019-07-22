@@ -34,7 +34,7 @@ class DateCalculatorController extends Controller
         }
 
         $number_of_week_days = calculateNumberOfWeekDays($start,$end);   
-        $number_of_weeks = calculateNumberOfWeeks($start,$end,$convert_to);         
+        $number_of_weeks = calculateNumberOfWeeks($start,$end);         
 
         $data = array(
             'start_date'=>$start_date,

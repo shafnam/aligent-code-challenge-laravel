@@ -80,15 +80,10 @@
      * @param $end
      * @return integer
      */
-    function calculateNumberOfWeeks($start,$end,$convert_to){
-        if($convert_to != null){
-            $datediff = calculateNumberOfDays($start,$end,$convert_to)[0];
-            //dd($datediff);
-        } else {
-            $datediff = calculateNumberOfDays($start,$end,$convert_to);
-        }
+    function calculateNumberOfWeeks($start,$end){
+        
+        $datediff = calculateNumberOfDays($start,$end,$convert_to=null);        
         $number_of_weeks = floor($datediff / 7);
-        //dd($number_of_weeks);
         return $number_of_weeks;
     }
 
