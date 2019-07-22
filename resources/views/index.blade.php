@@ -10,13 +10,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="label-control">Select start date</label>
-                    <input type="text" class="form-control datetimepicker_start" name="start">
+                    <input type="text" class="form-control datetimepicker_start" name="start" @if(isset($start_date)) value="{{ $start_date }}" @else value="{{old('start')}}" @endif>
                 </div>                    
             </div>                    
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="label-control">Select end date</label>
-                    <input type="text" class="form-control datetimepicker_end" name="end">
+                    <input type="text" class="form-control datetimepicker_end" name="end" @if(isset($end_date)) value="{{ $end_date }}" @else value="{{old('end')}}" @endif>
                 </div>                    
             </div>
         </div>
@@ -34,7 +34,20 @@
             <table>
                 <tr>
                     <td>Number of days:</td>
-                    <td> {{ $number_of_days }}</td> 
+                    <td> {{ $number_of_days }}</td>
+                    <td class="px-3">Get number of days in:</td>
+                    <td> 
+                        <div class="form-group ml-2 pt-2">
+                            <select class="form-control selectpicker" data-style="btn btn-link" name="convert_to" style="width: 80px;">
+                                <option value="0">Please select</option>
+                                <option value="seconds" <?php if( isset($convert_to) && $convert_to == 'seconds'){ echo "selected"; }?>>seconds</option>
+                                <option value="minutes" <?php if( isset($convert_to) && $convert_to == 'minutes'){ echo "selected"; }?>>minutes</option>
+                                <option value="hours" <?php if( isset($convert_to) && $convert_to == 'hours'){ echo "selected"; }?>>hours</option>
+                                <option value="years" <?php if( isset($convert_to) && $convert_to == 'years'){ echo "selected"; }?>>years</option>
+                            </select>  
+                        </div>                             
+                    </td> 
+                    <td class="px-3">: <?php if(isset($diff_in_convert_value)) { echo $diff_in_convert_value . ' ' . $convert_to; } ?></td>
                 </tr> 
                 <tr>
                     <td>Number of weekdays:</td>

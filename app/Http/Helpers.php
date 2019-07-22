@@ -5,13 +5,32 @@
      * @param $end
      * @return integer
      */
-    function calculateNumberOfDays($start,$end){
+    function calculateNumberOfDays($start,$end,$convert_to=null){
         $datediff = ($start - $end);
         // 1 day = 24 hours 
         // 24 * 60 * 60 = 86400 seconds 
         $number_of_days = abs($datediff / (60 * 60 * 24)); // gets the positive value
-        $number_of_days = floor($number_of_days); // gets the complete value        
-        return $number_of_days;
+        $number_of_days = floor($number_of_days); // gets the complete value
+
+        if($convert_to != null) { 
+            if($convert_to == 'seconds') {
+                $datediffInConvertField = abs( $datediff);
+            }
+            else if($convert_to == 'minutes') {
+                $datediffInConvertField = abs( $datediff / 60 ) ;
+            }
+            else if($convert_to == 'hours') {
+                $datediffInConvertField = abs($datediff / (60 * 60)) ;
+            }
+            else if($convert_to == 'years') {
+                $datediffInConvertField = abs(round($datediff / (60 * 60 * 24 * 365.25))) ;
+            }
+            // return array as function result
+            return array($number_of_days, $datediffInConvertField);
+        } else {
+            // return only the number of days
+            return $number_of_days;
+        }
     }
 
     /**
@@ -61,10 +80,15 @@
      * @param $end
      * @return integer
      */
-    function calculateNumberOfWeeks($start,$end) {
-        
-        $datediff = calculateNumberOfDays($start,$end);
+    function calculateNumberOfWeeks($start,$end,$convert_to){
+        if($convert_to != null){
+            $datediff = calculateNumberOfDays($start,$end,$convert_to)[0];
+            //dd($datediff);
+        } else {
+            $datediff = calculateNumberOfDays($start,$end,$convert_to);
+        }
         $number_of_weeks = floor($datediff / 7);
+        //dd($number_of_weeks);
         return $number_of_weeks;
     }
 
