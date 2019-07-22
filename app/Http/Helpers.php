@@ -55,4 +55,17 @@
         return $number_of_week_days;
     }
 
+    /**
+     * Find the number of complete weeks between two datetime parameters
+     * @param $start
+     * @param $end
+     * @return integer
+     */
+    function calculateNumberOfWeeks($start,$end) {
+        
+        $datediff = calculateNumberOfDays($start,$end);
+        $number_of_weeks = floor($datediff / 7);
+        return $number_of_weeks;
+    }
+
 ?>
